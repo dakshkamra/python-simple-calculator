@@ -1,28 +1,52 @@
-# Simple Calculator
+def calculator():
+  """
+  A simple calculator that performs basic and advanced operations.
+  """
 
-This Python script implements a basic calculator with the following features:
+  while True:
+    # Get user input for operation
+    operation = input("Enter an operation (+, -, *, /, sqrt, pow): ")
 
-- **Basic Operations:**
-    - Addition (+)
-    - Subtraction (-)
-    - Multiplication (*)
-    - Division (/)
+    # Check for exit command
+    if operation.lower() == 'exit':
+      print("Goodbye!")
+      break
 
-- **Advanced Operations:**
-    - Square Root (sqrt)
-    - Exponentiation (pow)
+    # Get numbers from the user
+    try:
+      num1 = float(input("Enter first number: "))
+      num2 = float(input("Enter second number (except for sqrt): "))
+    except ValueError:
+      print("Invalid input. Please enter numbers.")
+      continue
 
-- **Error Handling:**
-    - Handles division by zero.
-    - Prevents calculating the square root of negative numbers.
-    - Handles invalid input gracefully.
+    # Perform the operation based on user input
+    if operation == '+':
+      result = num1 + num2
+      print(f"{num1} + {num2} = {result}")
+    elif operation == '-':
+      result = num1 - num2
+      print(f"{num1} - {num2} = {result}")
+    elif operation == '*':
+      result = num1 * num2
+      print(f"{num1} * {num2} = {result}")
+    elif operation == '/':
+      if num2 == 0:
+        print("Error: Division by zero is not allowed.")
+      else:
+        result = num1 / num2
+        print(f"{num1} / {num2} = {result}")
+    elif operation == 'sqrt':
+      if num1 < 0:
+        print("Error: Square root of a negative number is not allowed.")
+      else:
+        result = num1**0.5
+        print(f"sqrt({num1}) = {result}")
+    elif operation == 'pow':
+      result = num1**num2
+      print(f"{num1} raised to the power of {num2} = {result}")
+    else:
+      print("Invalid operation. Please enter +, -, *, /, sqrt, or pow.")
 
-- **User-Friendly Interface:**
-    - Provides clear instructions and prompts.
-    - Allows the user to exit the calculator using the 'exit' command.
-
-**How to Use:**
-
-1. Save the code as `calculator.py`.
-2. Run it from your terminal using `python calculator.py`.
-3. Follow the on-screen instructions to perform calculations.
+if __name__ == "__main__":
+  calculator()
